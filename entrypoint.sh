@@ -63,9 +63,9 @@ echo "extracting openshift-install-linux-$OKD_VERSION.tar.gz ..."
 echo ""
 tar zxf /srv/okd-installer/openshift-install-linux-$OKD_VERSION.tar.gz -C /srv/okd-installer/
 tar zxf /srv/okd-installer/openshift-client-linux-$OKD_VERSION.tar.gz -C /srv/okd-installer/
-mv /srv/okd-installer/openshift-install /srv/okd-installer/openshift-install-$OKD_VERSION
-mv /srv/okd-installer/oc /usr/local/bin/oc
-mv /srv/okd-installer/kubectl /usr/local/bin/kubectl
+mv -f /srv/okd-installer/openshift-install /srv/okd-installer/openshift-install-$OKD_VERSION
+mv -f /srv/okd-installer/oc /usr/local/bin/oc
+mv -f /srv/okd-installer/kubectl /usr/local/bin/kubectl
 
 echo ""
 echo "creating ignition files ..."
