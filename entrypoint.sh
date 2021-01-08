@@ -75,6 +75,15 @@ if [ -f /srv/okd-installer/installation/bootstrap.ign ] ; then
   echo "if you want a new installation remove the directory /srv/okd-installer/installation/"
   echo ""
   echo "running installation ..."
+  echo "you can keep an eye on the progress of this by export the KUBECONFIG"
+  echo ""
+  echo "export KUBECONFIG=/srv/okd-installer/installation/auth/kubeconfig"
+  echo "oc get co"
+  echo ""
+  echo "remember to keep an eye on CSR as they are not always approved"
+  echo ""
+  echo "oc get csr | awk '{print $1}' | grep -v NAME | xargs oc adm certificate approve"
+  echo ""
   /srv/okd-installer/openshift-install-$OKD_VERSION --dir=/srv/okd-installer/installation/ wait-for bootstrap-complete --log-level=info
   echo ""
   /srv/okd-installer/openshift-install-$OKD_VERSION --dir=/srv/okd-installer/installation/ wait-for install-complete --log-level=info
@@ -87,12 +96,21 @@ else
   chmod 0666 /srv/okd-installer/installation/*.ign
   echo ""
   echo "running installation ..."
+  echo "you can keep an eye on the progress of this by export the KUBECONFIG"
+  echo ""
+  echo "export KUBECONFIG=/srv/okd-installer/installation/auth/kubeconfig"
+  echo "oc get co"
+  echo ""
+  echo "remember to keep an eye on CSR as they are not always approved"
+  echo ""
+  echo "oc get csr | awk '{print $1}' | grep -v NAME | xargs oc adm certificate approve"
+  echo ""
   /srv/okd-installer/openshift-install-$OKD_VERSION --dir=/srv/okd-installer/installation/ wait-for bootstrap-complete --log-level=info
   echo ""
   /srv/okd-installer/openshift-install-$OKD_VERSION --dir=/srv/okd-installer/installation/ wait-for install-complete --log-level=info
 fi
 
 echo ""
-echo "sleeping ..."
+echo "sleeping for an hour..."
 echo ""
-sleep 600
+sleep 3600
