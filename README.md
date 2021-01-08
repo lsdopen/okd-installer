@@ -6,6 +6,12 @@ This container is used in conjunction with the LSDcontainer Helm chart.
 
 On it's own this container has no worth.
 
+Helm Repo: https://github.com/lsdopen/charts
+
+Helm Chart: lsdcontainer-bastion 
+
 ## Build Image
 
-podman build -t okd-installer:4.5 .
+```
+podman build -t okd-installer:latest .
+```
