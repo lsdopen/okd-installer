@@ -6,9 +6,9 @@
 # BASTION_IP_PORT (BASTION_IP_PORT=10.1.0.1:8080)
 
 echo ""
-echo "Sleeping for 3 minutes to allow DNS and other serices to start up"
+echo "Sleeping for 1 minutes to allow DNS and other services to start up"
 echo ""
-sleep 180
+sleep 120
 
 echo ""
 echo "creating pxe files ..."
