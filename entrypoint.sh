@@ -6,6 +6,11 @@
 # BASTION_IP_PORT (BASTION_IP_PORT=10.1.0.1:8080)
 
 echo ""
+echo "Sleeping for 3 minutes to allow DNS and other serices to start up"
+echo ""
+sleep 180
+
+echo ""
 echo "creating pxe files ..."
 echo ""
 mkdir -p /srv/pxe/pxelinux.cfg/
@@ -43,20 +48,24 @@ mkdir -p /srv/okd-installer/
 echo ""
 echo "downloading fedora coreos version $FEDORA_CORE_VERSION"
 echo ""
-curl -L -C - https://builds.coreos.fedoraproject.org/prod/streams/stable/builds/$FEDORA_CORE_VERSION/x86_64/fedora-coreos-$FEDORA_CORE_VERSION-live-initramfs.x86_64.img -o /srv/okd-installer/fedora-coreos-$FEDORA_CORE_VERSION-live-initramfs.x86_64.img
-curl -L -C - https://builds.coreos.fedoraproject.org/prod/streams/stable/builds/$FEDORA_CORE_VERSION/x86_64/fedora-coreos-$FEDORA_CORE_VERSION-live-kernel-x86_64 -o /srv/okd-installer/fedora-coreos-$FEDORA_CORE_VERSION-live-kernel-x86_64
-curl -L -C - https://builds.coreos.fedoraproject.org/prod/streams/stable/builds/$FEDORA_CORE_VERSION/x86_64/fedora-coreos-$FEDORA_CORE_VERSION-live-rootfs.x86_64.img -o /srv/okd-installer/fedora-coreos-$FEDORA_CORE_VERSION-live-rootfs.x86_64.img
+curl -s -L -C - https://builds.coreos.fedoraproject.org/prod/streams/stable/builds/$FEDORA_CORE_VERSION/x86_64/fedora-coreos-$FEDORA_CORE_VERSION-live-initramfs.x86_64.img -o /srv/okd-installer/fedora-coreos-$FEDORA_CORE_VERSION-live-initramfs.x86_64.img
+curl -s -L -C - https://builds.coreos.fedoraproject.org/prod/streams/stable/builds/$FEDORA_CORE_VERSION/x86_64/fedora-coreos-$FEDORA_CORE_VERSION-live-kernel-x86_64 -o /srv/okd-installer/fedora-coreos-$FEDORA_CORE_VERSION-live-kernel-x86_64
+curl -s -L -C - https://builds.coreos.fedoraproject.org/prod/streams/stable/builds/$FEDORA_CORE_VERSION/x86_64/fedora-coreos-$FEDORA_CORE_VERSION-live-rootfs.x86_64.img -o /srv/okd-installer/fedora-coreos-$FEDORA_CORE_VERSION-live-rootfs.x86_64.img
 
 echo ""
-echo "downloading openshift-install-linux-$OKD_VERSION.tar.gz ..."
+echo "downloading openshift-install-linux-$OKD_VERSION.tar.gz and openshift-client-linux-$OKD_VERSION.tar.gz ..."
 echo ""
-curl -L -C - https://github.com/openshift/okd/releases/download/$OKD_VERSION/openshift-install-linux-$OKD_VERSION.tar.gz -o /srv/okd-installer/openshift-install-linux-$OKD_VERSION.tar.gz
+curl -s -L -C - https://github.com/openshift/okd/releases/download/$OKD_VERSION/openshift-install-linux-$OKD_VERSION.tar.gz -o /srv/okd-installer/openshift-install-linux-$OKD_VERSION.tar.gz
+curl -s -L -C - https://github.com/openshift/okd/releases/download/$OKD_VERSION/openshift-client-linux-$OKD_VERSION.tar.gz -o /srv/okd-installer/openshift-client-linux-$OKD_VERSION.tar.gz
 
 echo ""
 echo "extracting openshift-install-linux-$OKD_VERSION.tar.gz ..."
 echo ""
-tar zxvf /srv/okd-installer/openshift-install-linux-$OKD_VERSION.tar.gz -C /srv/okd-installer/
-mv /srv/okd-installer/openshift-install /srv/okd-installer/openshift-install-$OKD_VERSION
+tar zxf /srv/okd-installer/openshift-install-linux-$OKD_VERSION.tar.gz -C /srv/okd-installer/
+tar zxf /srv/okd-installer/openshift-client-linux-$OKD_VERSION.tar.gz -C /srv/okd-installer/
+mv -f /srv/okd-installer/openshift-install /srv/okd-installer/openshift-install-$OKD_VERSION
+mv -f /srv/okd-installer/oc /usr/local/bin/oc
+mv -f /srv/okd-installer/kubectl /usr/local/bin/kubectl
 
 echo ""
 echo "creating ignition files ..."
