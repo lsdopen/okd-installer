@@ -48,20 +48,24 @@ mkdir -p /srv/okd-installer/
 echo ""
 echo "downloading fedora coreos version $FEDORA_CORE_VERSION"
 echo ""
-curl -L -C - https://builds.coreos.fedoraproject.org/prod/streams/stable/builds/$FEDORA_CORE_VERSION/x86_64/fedora-coreos-$FEDORA_CORE_VERSION-live-initramfs.x86_64.img -o /srv/okd-installer/fedora-coreos-$FEDORA_CORE_VERSION-live-initramfs.x86_64.img
-curl -L -C - https://builds.coreos.fedoraproject.org/prod/streams/stable/builds/$FEDORA_CORE_VERSION/x86_64/fedora-coreos-$FEDORA_CORE_VERSION-live-kernel-x86_64 -o /srv/okd-installer/fedora-coreos-$FEDORA_CORE_VERSION-live-kernel-x86_64
-curl -L -C - https://builds.coreos.fedoraproject.org/prod/streams/stable/builds/$FEDORA_CORE_VERSION/x86_64/fedora-coreos-$FEDORA_CORE_VERSION-live-rootfs.x86_64.img -o /srv/okd-installer/fedora-coreos-$FEDORA_CORE_VERSION-live-rootfs.x86_64.img
+curl -s -L -C - https://builds.coreos.fedoraproject.org/prod/streams/stable/builds/$FEDORA_CORE_VERSION/x86_64/fedora-coreos-$FEDORA_CORE_VERSION-live-initramfs.x86_64.img -o /srv/okd-installer/fedora-coreos-$FEDORA_CORE_VERSION-live-initramfs.x86_64.img
+curl -s -L -C - https://builds.coreos.fedoraproject.org/prod/streams/stable/builds/$FEDORA_CORE_VERSION/x86_64/fedora-coreos-$FEDORA_CORE_VERSION-live-kernel-x86_64 -o /srv/okd-installer/fedora-coreos-$FEDORA_CORE_VERSION-live-kernel-x86_64
+curl -s -L -C - https://builds.coreos.fedoraproject.org/prod/streams/stable/builds/$FEDORA_CORE_VERSION/x86_64/fedora-coreos-$FEDORA_CORE_VERSION-live-rootfs.x86_64.img -o /srv/okd-installer/fedora-coreos-$FEDORA_CORE_VERSION-live-rootfs.x86_64.img
 
 echo ""
-echo "downloading openshift-install-linux-$OKD_VERSION.tar.gz ..."
+echo "downloading openshift-install-linux-$OKD_VERSION.tar.gz and openshift-client-linux-$OKD_VERSION.tar.gz ..."
 echo ""
-curl -L -C - https://github.com/openshift/okd/releases/download/$OKD_VERSION/openshift-install-linux-$OKD_VERSION.tar.gz -o /srv/okd-installer/openshift-install-linux-$OKD_VERSION.tar.gz
+curl -s -L -C - https://github.com/openshift/okd/releases/download/$OKD_VERSION/openshift-install-linux-$OKD_VERSION.tar.gz -o /srv/okd-installer/openshift-install-linux-$OKD_VERSION.tar.gz
+curl -s -L -C - https://github.com/openshift/okd/releases/download/$OKD_VERSION/openshift-client-linux-$OKD_VERSION.tar.gz -o /srv/okd-installer/openshift-client-linux-$OKD_VERSION.tar.gz
 
 echo ""
 echo "extracting openshift-install-linux-$OKD_VERSION.tar.gz ..."
 echo ""
-tar zxvf /srv/okd-installer/openshift-install-linux-$OKD_VERSION.tar.gz -C /srv/okd-installer/
+tar zxf /srv/okd-installer/openshift-install-linux-$OKD_VERSION.tar.gz -C /srv/okd-installer/
+tar zxf /srv/okd-installer/openshift-client-linux-$OKD_VERSION.tar.gz -C /srv/okd-installer/
 mv /srv/okd-installer/openshift-install /srv/okd-installer/openshift-install-$OKD_VERSION
+mv /srv/okd-installer/oc /usr/local/bin/oc
+mv /srv/okd-installer/kubectl /usr/local/bin/kubectl
 
 echo ""
 echo "creating ignition files ..."
