@@ -59,13 +59,11 @@ curl -s -L -C - https://github.com/openshift/okd/releases/download/$OKD_VERSION/
 curl -s -L -C - https://github.com/openshift/okd/releases/download/$OKD_VERSION/openshift-client-linux-$OKD_VERSION.tar.gz -o /srv/okd-installer/openshift-client-linux-$OKD_VERSION.tar.gz
 
 echo ""
-echo "extracting openshift-install-linux-$OKD_VERSION.tar.gz ..."
+echo "extracting openshift-install-linux-$OKD_VERSION.tar.gz and openshift-client-linux-$OKD_VERSION.tar.gz ..."
 echo ""
 tar zxf /srv/okd-installer/openshift-install-linux-$OKD_VERSION.tar.gz -C /srv/okd-installer/
-tar zxf /srv/okd-installer/openshift-client-linux-$OKD_VERSION.tar.gz -C /srv/okd-installer/
+tar zxf /srv/okd-installer/openshift-client-linux-$OKD_VERSION.tar.gz -C /usr/local/bin/
 mv -f /srv/okd-installer/openshift-install /srv/okd-installer/openshift-install-$OKD_VERSION
-mv -f /srv/okd-installer/oc /usr/local/bin/oc
-mv -f /srv/okd-installer/kubectl /usr/local/bin/kubectl
 
 echo ""
 echo "creating ignition files ..."
