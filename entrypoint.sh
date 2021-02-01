@@ -16,7 +16,7 @@ echo ""
 mkdir -p /srv/pxe/pxelinux.cfg/
 cp /opt/pxe/* /srv/pxe/
 
-if [ "$USE_PROXY" = "YES"]
+if [ "$USE_PROXY" = "YES" ]
   then
     echo ""
     echo "setting proxy server to $PROXY_URL"
