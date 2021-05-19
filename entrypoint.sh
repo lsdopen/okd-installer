@@ -27,7 +27,7 @@ fi
 if [ "$OPEN_TYPE" = "OKD" ]
   then
 echo ""
-echo "installation of OCP"
+echo "installation of OKD"
 echo ""
 echo "creating pxe default file ..."
 echo ""
@@ -60,15 +60,15 @@ mkdir -p /srv/okd-installer/
 echo ""
 echo "downloading fedora coreos version $CORE_VERSION"
 echo ""
-curl -s -L -C - https://builds.coreos.fedoraproject.org/prod/streams/stable/builds/$CORE_VERSION/x86_64/fedora-coreos-$CORE_VERSION-live-initramfs.x86_64.img -o /srv/okd-installer/fedora-coreos-$CORE_VERSION-live-initramfs.x86_64.img
-curl -s -L -C - https://builds.coreos.fedoraproject.org/prod/streams/stable/builds/$CORE_VERSION/x86_64/fedora-coreos-$CORE_VERSION-live-kernel-x86_64 -o /srv/okd-installer/fedora-coreos-$CORE_VERSION-live-kernel-x86_64
-curl -s -L -C - https://builds.coreos.fedoraproject.org/prod/streams/stable/builds/$CORE_VERSION/x86_64/fedora-coreos-$CORE_VERSION-live-rootfs.x86_64.img -o /srv/okd-installer/fedora-coreos-$CORE_VERSION-live-rootfs.x86_64.img
+curl -L -C - https://builds.coreos.fedoraproject.org/prod/streams/stable/builds/$CORE_VERSION/x86_64/fedora-coreos-$CORE_VERSION-live-initramfs.x86_64.img -o /srv/okd-installer/fedora-coreos-$CORE_VERSION-live-initramfs.x86_64.img
+curl -L -C - https://builds.coreos.fedoraproject.org/prod/streams/stable/builds/$CORE_VERSION/x86_64/fedora-coreos-$CORE_VERSION-live-kernel-x86_64 -o /srv/okd-installer/fedora-coreos-$CORE_VERSION-live-kernel-x86_64
+curl -L -C - https://builds.coreos.fedoraproject.org/prod/streams/stable/builds/$CORE_VERSION/x86_64/fedora-coreos-$CORE_VERSION-live-rootfs.x86_64.img -o /srv/okd-installer/fedora-coreos-$CORE_VERSION-live-rootfs.x86_64.img
 
 echo ""
 echo "downloading openshift-install-linux-$CLIENT_VERSION.tar.gz and openshift-client-linux-$CLIENT_VERSION.tar.gz ..."
 echo ""
-curl -s -L -C - https://github.com/openshift/okd/releases/download/$CLIENT_VERSION/openshift-install-linux-$CLIENT_VERSION.tar.gz -o /srv/okd-installer/openshift-install-linux-$CLIENT_VERSION.tar.gz
-curl -s -L -C - https://github.com/openshift/okd/releases/download/$CLIENT_VERSION/openshift-client-linux-$CLIENT_VERSION.tar.gz -o /srv/okd-installer/openshift-client-linux-$CLIENT_VERSION.tar.gz
+curl -L -C - https://github.com/openshift/okd/releases/download/$CLIENT_VERSION/openshift-install-linux-$CLIENT_VERSION.tar.gz -o /srv/okd-installer/openshift-install-linux-$CLIENT_VERSION.tar.gz
+curl -L -C - https://github.com/openshift/okd/releases/download/$CLIENT_VERSION/openshift-client-linux-$CLIENT_VERSION.tar.gz -o /srv/okd-installer/openshift-client-linux-$CLIENT_VERSION.tar.gz
 
 echo ""
 echo "extracting openshift-install-linux-$CLIENT_VERSION.tar.gz and openshift-client-linux-$CLIENT_VERSION.tar.gz ..."
@@ -159,15 +159,15 @@ mkdir -p /srv/okd-installer/
 echo ""
 echo "downloading rhcos version $CORE_VERSION"
 echo ""
-curl -s -L -C - https://mirror.openshift.com/pub/openshift-v4/dependencies/rhcos/$CORE_VERSION/$CORE_MINOR_RELEASE/rhcos-$CORE_MINOR_RELEASE-x86_64-live-initramfs.x86_64.img -o /srv/okd-installer/rhcos-$CORE_VERSION-live-initramfs.x86_64.img
-curl -s -L -C - https://mirror.openshift.com/pub/openshift-v4/dependencies/rhcos/$CORE_VERSION/$CORE_MINOR_RELEASE/rhcos-$CORE_MINOR_RELEASE-x86_64-live-kernel-x86_64 -o /srv/okd-installer/rhcos-$CORE_VERSION-live-kernel-x86_64
-curl -s -L -C - https://mirror.openshift.com/pub/openshift-v4/dependencies/rhcos/$CORE_VERSION/$CORE_MINOR_RELEASE/rhcos-$CORE_MINOR_RELEASE-x86_64-live-rootfs.x86_64.img -o /srv/okd-installer/rhcos-$CORE_VERSION-live-rootfs.x86_64.img
+curl -L -C - https://mirror.openshift.com/pub/openshift-v4/dependencies/rhcos/$CORE_VERSION/$CORE_MINOR_RELEASE/rhcos-$CORE_MINOR_RELEASE-x86_64-live-initramfs.x86_64.img -o /srv/okd-installer/rhcos-$CORE_VERSION-live-initramfs.x86_64.img
+curl -L -C - https://mirror.openshift.com/pub/openshift-v4/dependencies/rhcos/$CORE_VERSION/$CORE_MINOR_RELEASE/rhcos-$CORE_MINOR_RELEASE-x86_64-live-kernel-x86_64 -o /srv/okd-installer/rhcos-$CORE_VERSION-live-kernel-x86_64
+curl -L -C - https://mirror.openshift.com/pub/openshift-v4/dependencies/rhcos/$CORE_VERSION/$CORE_MINOR_RELEASE/rhcos-$CORE_MINOR_RELEASE-x86_64-live-rootfs.x86_64.img -o /srv/okd-installer/rhcos-$CORE_VERSION-live-rootfs.x86_64.img
 
 echo ""
 echo "downloading openshift-install-linux-$CLIENT_VERSION.tar.gz and openshift-client-linux-$CLIENT_VERSION.tar.gz ..."
 echo ""
-curl -s -L -C - https://mirror.openshift.com/pub/openshift-v4/clients/ocp/$CLIENT_VERSION/openshift-install-linux-$CLIENT_VERSION.tar.gz -o /srv/okd-installer/openshift-install-linux-$CLIENT_VERSION.tar.gz
-curl -s -L -C - https://mirror.openshift.com/pub/openshift-v4/clients/ocp/$CLIENT_VERSION/openshift-client-linux-$CLIENT_VERSION.tar.gz -o /srv/okd-installer/openshift-client-linux-$CLIENT_VERSION.tar.gz
+curl -L -C - https://mirror.openshift.com/pub/openshift-v4/clients/ocp/$CLIENT_VERSION/openshift-install-linux-$CLIENT_VERSION.tar.gz -o /srv/okd-installer/openshift-install-linux-$CLIENT_VERSION.tar.gz
+curl -L -C - https://mirror.openshift.com/pub/openshift-v4/clients/ocp/$CLIENT_VERSION/openshift-client-linux-$CLIENT_VERSION.tar.gz -o /srv/okd-installer/openshift-client-linux-$CLIENT_VERSION.tar.gz
 
 echo ""
 echo "extracting openshift-install-linux-$CLIENT_VERSION.tar.gz and openshift-client-linux-$CLIENT_VERSION.tar.gz ..."
@@ -179,7 +179,6 @@ mv -f /srv/okd-installer/openshift-install /srv/okd-installer/openshift-install-
 echo ""
 echo "creating ignition files ..."
 echo ""
-
 
 
 if [ -f /srv/okd-installer/installation/bootstrap.ign ] ; then
@@ -223,8 +222,6 @@ else
   /srv/okd-installer/openshift-install-$CLIENT_VERSION --dir=/srv/okd-installer/installation/ wait-for install-complete --log-level=info
 fi
 fi
-
-
 
 echo ""
 echo "sleeping for an hour..."
